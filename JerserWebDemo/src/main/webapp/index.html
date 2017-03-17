@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+	function beanParamDemo(){
+		var _key = $('#key').val();
+		var _value = $('#value').val();
+		var obj={"key":_key,"value":_value};
+ 		 $.ajax({
+ 			 type: "POST",
+             url: "demo/demo/add",
+             data: JSON.stringify(obj),
+			 dataType:"json",
+			 contentType:"application/json",
+             success: function (result) {
+             	console.log(result.key);
+             	console.log(result.value);
+             }
+         });
+	}
+	
+	function pathParamDemo(){
+		var _key = $('#key').val();
+		var _value = $('#value').val();
+		var obj={"key":_key,"value":_value};
+ 		 $.ajax({
+ 			 type: "GET",
+             url: "demo/demo/"+_value,
+			 dataType:"json",
+			 contentType:"application/json",
+             success: function (result) {
+             	console.log(result);
+             }
+         });
+	}
+	
+	function queryParamDemo(){
+		var _key = $('#key').val();
+		var _value = $('#value').val();
+		var obj={"key":_key,"value":_value};
+ 		 $.ajax({
+ 			 type: "GET",
+             url: "demo/demo/queryParamDemo?key="+_key+"&value="+_value,
+			 dataType:"json",
+			 contentType:"application/json",
+             success: function (result) {
+             	console.log(result);
+             }
+         });
+	}
+	
+	function noParamDemo(){
+		$.ajax({
+			 type: "GET",
+             url: "demo/demo/demo",
+			 dataType:"json",
+			 contentType:"application/json",
+            success: function (result) {
+            	console.log(result);
+            }
+        });
+	}
+</script>
+</head>
+<body>
+	<p>key:<input type="text" id="key"></input></p>
+	<p>value:<input type="text" id="value"></input></p>
+	<p><button onclick="beanParamDemo()">beanParamDemo</button></p>
+	<p></p>
+	<p><button onclick="noParamDemo()">noParamDemo</button></p>
+	<p><button onclick="pathParamDemo()">pathParamDemo</button></p>
+	<p><button onclick="queryParamDemo()">queryParamDemo</button></p>
+</body>
+</html>
